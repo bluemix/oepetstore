@@ -1,5 +1,5 @@
 {
-    'name' : 'OpenERP Pet Store',
+    'name': 'OpenERP Pet Store',
     'version': '1.0',
     'summary': 'Sell pet toys',
     'category': 'Tools',
@@ -7,15 +7,15 @@
         """
 OpenERP Pet Store
 =================
-
 A wonderful application to sell pet toys.
         """,
     'data': [
-        "petstore.xml",
-        "petstore_data.xml",
-        "oepetstore.message_of_the_day.csv",
+        'security/ir.model.access.csv',
+        "views/petstore.xml",
+        "data/petstore_data.xml",
+        "data/oepetstore.message_of_the_day.csv",
     ],
-    'depends' : ['sale_stock'],
+    'depends': ['sale_stock'],
     'qweb': ['static/src/xml/*.xml'],
     'application': True,
 }
