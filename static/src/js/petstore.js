@@ -1,20 +1,27 @@
-odoo.define("oepetstore", function(require, local){
+odoo.define("oepetstore.petstore", function(require){
     'use strict';
 
-    var translation = require('web.translation'),
-        core = require('web.core');
-    const _t = translation._t,
-        QWeb = core.qweb,
-        Widget = require('web.Widget');
+    var AbstractAction = require('web.AbstractAction');
+    var core = require('web.core');
+    const _t = core._t;
+    var QWeb = core.qweb;
+    var Widget = require('web.Widget');
 
-
-    // console.log("pet store home page loaded");
-    local.HomePage = Widget.extend({
-        // template: 'website.homepage',
+    var HomePageClientAction =  AbstractAction.extend({
+        className: 'oe_petstore_homepage',
         start: function() {
-            console.log("pet store home page loaded");
+            this.$el.append('<div>Hello dear Odoo user!</div>');
+            var greeting = new GreetingsWidget(this);
+            greeting.appendTo(this.$el);
         },
     });
 
-    // instance.web.client_actions.add('petstore.homepage', 'instance.oepetstore.HomePage');
+    var GreetingsWidget = Widget.extend({
+        className: 'oe_petstore_greetings',
+        start: function() {
+            this.$el.append('<div>We are so happy to see you again in this menu!</div>');
+        },
+    });
+
+    core.action_registry.add('petstore_homepage', HomePageClientAction);
 });
